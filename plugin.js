@@ -1,6 +1,6 @@
 <script>
 
-  ( function( document, window, uaNumber, globalObjectName, customDimensionNumber, customMetricNumber ) {
+  ( function( document, window, uaNumber, globalObjectName, customDimensionNumber, customMetricNumber, undefined ) {
 
     if( uaNumber === "UA-XXXXX-XX" || typeof uaNumber === 'undefined' ) {
 
@@ -222,6 +222,6 @@
 
     }
 
-  } )( document, window, "UA_NUMBER", "GLOBAL_OBJECT_NAME", "OPT_CUSTOM_DIMENSION_NUMBER", "OPT_CUSTOM_METRIC_NUMBER" );
+  } )( document, window, "UA_NUMBER", "OPT_GLOBAL_OBJECT_NAME", "OPT_CUSTOM_DIMENSION_NUMBER", "OPT_CUSTOM_METRIC_NUMBER" );
 
 </script>
