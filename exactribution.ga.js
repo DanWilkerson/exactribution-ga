@@ -14,7 +14,7 @@
 
       if(config.forceDirect) {
 
-        if(document.referrer === '') {
+        if(document.referrer === '' && document.location.search.indexOf('utm_source=') === -1) {
 
           tracker.set('campaignSource', '(direct)');
           tracker.set('campaignMedium', '(none)');

@@ -1,7 +1,6 @@
-#ga-url-share-plugin
-===================
+#exactribution-ga plugin
 
-A plugin to track when users share URLs from the toolbar using the Google Analytics & force direct traffic 
+A Universal Analytics plugin to enhance the accuracy of Google Analytics. Re-attributes traffic from 'dark social' to 'toolbar / shared' and optionally hard-codes in returning visits as '(direct) / (none)' instead of preserving campaign information (for more information on this, [read this Google documentation](https://developers.google.com/analytics/devguides/platform/campaign-flow).
 
 ##Getting Started
 
