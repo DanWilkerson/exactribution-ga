@@ -4,11 +4,11 @@
 
   if(ga) {
 
-    ga('provide', 'toolbarShare', toolbarShare);
+    ga('provide', 'exactribution', exactribution);
 
   }
 
-  function toolbarShare(tracker, config) {
+  function exactribution(tracker, config) {
 
     function init() {
 

@@ -5,12 +5,13 @@ A Universal Analytics plugin to enhance the accuracy of Google Analytics. Re-att
 ##Getting Started
 
 ###Requirements
-In order for this plugin to work:
-- You must be using Universal Analytics 
-- You must include the exactribution.js script below the Google Analytics snippet
+In order for this plugin to work, you must not be supplying a custom client ID.
+
+###Implementation
+Include the plugin script below where the Google Analytics Tag is loaded.
 
     <!-- Incorrect -->
-    <script src="/exactribution.js" type="text/javascript"></script>
+    <script src="/exactribution.ga.js" type="text/javascript"></script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -33,9 +34,19 @@ In order for this plugin to work:
       ga('send', 'pageview');
 
     </script>
-    <script src="/exactribution.js" type="text/javascript"></script>
+    <script src="/exactribution.ga.js" type="text/javascript"></script>
 
-- You must not be using a custom client ID
+Use the 'require' command immediately after the 'create' command to include the plugin. Pass it the name of the plugin and a configuration object.
+
+    // Incorrect
+    ga('create', 'UA-XXXXXX-YY', 'auto');
+    ga('send', 'pageview');
+    ga('require', 'exactribution', {forceDirect: true, customDimension: 1});
+
+    // Correct
+    ga('create', 'UA-XXXXXX-YY', 'auto');
+    ga('require', 'exactribution', {forceDirect: true, customDimension: 1});
+    ga('send', 'pageview');
     
 ###Config
 ####config.forceDirect
