@@ -1,19 +1,49 @@
-ga-url-share-plugin
+#ga-url-share-plugin
 ===================
 
-A plugin to track when users share URLs from the toolbar using the Google Analytics &amp; the Measurement Protocol
+A plugin to track when users share URLs from the toolbar using the Google Analytics & force direct traffic 
 
 ##Getting Started
 
 ###Requirements
-In order for this plugin to work, you need to already be storing your users' Client ID as a Custom Dimension. To do this, create a Custom Dimension called Client ID and adjust your default tracking code to store the "clientId" value of your tracker.
+In order for this plugin to work:
+- You must be using Universal Analytics 
+- You must include the exactribution.js script below the Google Analytics snippet
 
+    <!-- Incorrect -->
+    <script src="/exactribution.js" type="text/javascript"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-XXXXXX-YY', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+    <!-- Correct -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-XXXXXX-YY', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    <script src="/exactribution.js" type="text/javascript"></script>
+
+- You must not be using a custom client ID
+    
 ###Config
-You must replace the following values added to the end of the script with actual values:
-"UA_NUMBER" - the UA number of the account you want to send the data into. Currently this plugin only supports one UA number.
-"OPT_GLOBAL_OBJECT_NAME" - If you've renamed your global GA object from the default ( "ga" ), enter the new object name here.
-"OPT_CUSTOM_DIMENSION_NUMBER" - Stores the client ID of the referred user in association with the client ID of the referring user. Useful for mapping how users share with one another
-"OPT_CUSTOM_METRIC_NUMBER" - Increments a counter of the client ID who referred the user. Useful for determining what users refer the most traffic to your site.
+####config.forceDirect
+If set to true, it will manually write in (direct) / (none) when no referrer is present.
+
+####config.customDimension
+If a value is present, it will try and store any referring CIDs as the supplied Custom Dimension.
 
 ###Warnings
 This plugin will overwrite whatever is in the anchor (everything past the # in your URL) once it fires. If your website makes extensive use of the anchor for navigation, this could severely damage the user experience.
