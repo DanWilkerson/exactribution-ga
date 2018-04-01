@@ -1,15 +1,16 @@
-#exactribution Google Analytics Plugin
+# exactribution Google Analytics Plugin
 
 A Universal Analytics plugin to enhance the accuracy of Google Analytics. Re-attributes traffic with no referral information with a stored, non-matching client ID to 'toolbar / shared'.
 
-##Getting Started
+## Getting Started
 
-###Requirements
+### Requirements
 In order for this plugin to work, you must not be supplying a custom client ID - just the Google Analytics default setting. You'll also need to modify your on-page code.
 
-###Implementation
+### Implementation
 Include the plugin script below where the Google Analytics Tag is loaded.
 
+```html
     <!-- Incorrect Placement -->
     <script src="/exactribution.js" type="text/javascript"></script>
     <script>
@@ -35,9 +36,11 @@ Include the plugin script below where the Google Analytics Tag is loaded.
 
     </script>
     <script src="/exactribution.js" type="text/javascript"></script>
+```
 
 Modify your default snippet to include the 'require' command immediately after the 'create' command to include the plugin. Pass it the name of the plugin and a configuration object.
 
+```
     // Incorrect
     ga('create', 'UA-XXXXXX-YY', 'auto');
     ga('send', 'pageview');
@@ -47,11 +50,12 @@ Modify your default snippet to include the 'require' command immediately after t
     ga('create', 'UA-XXXXXX-YY', 'auto');
     ga('require', 'exactribution', {customDimension: 1});
     ga('send', 'pageview');
+```
     
-###Config
+### Config
 
-####config.customDimension
+#### config.customDimension
 If a stored client ID from a referring user is present, it will be stored in the supplied dimension index.
 
-###Warnings
+### Warnings
 This plugin will overwrite whatever is in the anchor (everything past the # in your URL) once it fires. If your website makes extensive use of the anchor for navigation, this could severely damage the user experience. Please be careful about deploying this plugin and test thoroughly - **it could break your entire website** - you have been warned.
